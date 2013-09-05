@@ -7,7 +7,6 @@ blueprint:
       component:
         name: strongloop
         type: application
-        role: master
       constraints:
       - count: 1
       display-name: StrongLoop Node.js
