@@ -1,0 +1,73 @@
+# The 'context' for the templating language (see Jinja2 syntax http://jinja.pocoo.org/docs/templates/) will contain...
+# Objects:
+# deployment: which includes inputs, environment, blueprint, and resources
+# component: the current component being evauated
+# resource: the current resource being evaluated
+# clients: hash of clients for each inbound relation (the join filter is useful here http://jinja.pocoo.org/docs/templates/#builtin-filters). Client hash includes ip only (so far).
+# Extended functions (added to normal Jinja functions):
+# setting(name) - used to get a setting as the engine sees it
+# parse_url(url) returns a url_parse result as scheme://netloc/path;parameters?query#fragment (may also include username, password, hostname, port)
+# hash(string) returns an MD5 hash as expected by Chef for values like passwords
+
+id: strongloop
+name: strongloop
+is: application
+provides:
+- application: http
+requires:
+- host: linux
+options:
+  "username":
+    type: string
+    required: true
+    default: root
+  "password":
+    type: password
+    default: '=generate_password(min_length=12, required_chars=["0123456789", "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"])'
+    required: true
+  "url":
+    type: url
+  "ssl_private_key":
+    type: string
+  "ssl_certificate":
+    type: string
+  "ssl_intermediate_key":
+    type: string
+run-list:
+  recipes:
+  - apt
+  - strongloop 
+  - strongloop::nginx
+maps:
+- value: {{deployment.id}} # Deployment ID needs to go to Node Attribute
+  targets:
+  - attributes://deployment/id
+  - attributes://strongloop/databag_name
+- value: |
+    {{ parse_url(setting('url')).certificate | indent(4) }}
+  targets:
+  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_cert
+- value: |
+    {{ parse_url(setting('url')).private_key | indent(4) }}
+  targets:
+  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_private_key
+- value: |
+    {{ parse_url(setting('url')).intermediate_key | indent(4) }}
+  targets:
+  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/cacert
+# Application/Wordpress settings
+- value: {{parse_url(setting('url')).hostname}}
+  targets:
+  - attributes://strongloop/domain 
+- value: {{ setting('username') }}
+  targets:
+  - attributes://strongloop/username 
+- value: {{ setting('password') }}
+  targets:
+  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/password
+- source:  requirements://host:linux/private_ip
+  targets:
+  - outputs://instance:{{resource.index}}/instance/ip
+  - outputs://instance:{{resource.index}}/instance/private_ip
+  - outputs://instance:{{resource.index}}/interfaces/ssh/ip
+  - outputs://instance:{{resource.index}}/interfaces/ssh/private_ip

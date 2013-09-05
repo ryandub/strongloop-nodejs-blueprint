@@ -1,0 +1,8 @@
+## librarian ##
+cookbooks
+tmp
+
+## pawn ##
+auth.json
+.kitchen/
+.kitchen.local.yml

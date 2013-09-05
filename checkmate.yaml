@@ -1,0 +1,248 @@
+blueprint:
+  id: 1cd3b25ea36547b79969b8d20a870349 
+  name: StrongLoop Node.js 
+  version: 1.0.0
+  services:
+    strongloop:
+      component:
+        name: strongloop
+        type: application
+        role: master
+      constraints:
+      - count: 1
+      display-name: StrongLoop Node.js
+      display-outputs:
+        "System User":
+          source: interfaces/strongloop/system_user
+          group: application
+          order: 2
+          type: string
+        "System Password":
+          source: interfaces/strongloop/strongloop_pass
+          type: password
+          group: application
+          order: 3
+          is-secret: true
+  options:
+    # Deployment Options
+    region:
+      label: Region
+      type: string
+      required: true
+      default: ORD
+      display-hints:
+        group: deployment
+        list-type: region
+        choice:
+        - DFW
+        - ORD
+        - LON
+        - SYD
+        - IAD
+      constrains:
+      - setting: region
+        provider: load-balancer
+    # Application Options
+    url:
+      label: Site Address
+      description: 'Domain name to access deployment'
+      type: url
+      required: true
+      default: http://example.com/
+      display-hints:
+        group: application
+        order: 1
+        default-protocol: http
+        encrypted-protocols: [https]
+        sample: http://example.com/
+      constraints:
+      - protocols: [http, https]
+        message: protocols are limited to http or https
+      - regex: '^([a-zA-Z]{2,}?\:\/\/[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*\.[a-zA-Z]{2,6}(?:\/?|(?:\/[\w\-]+)*)(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+\=[\w\-]+)?)?(?:\&[\w]+\=[\w\-]+)*)$'
+        message: must be a valid web address
+      constrains:
+      - setting: domain
+        service: strongloop
+        attribute: hostname
+      - resource_type: application
+        service: strongloop
+        setting: ssl_intermediate_key
+        attribute: intermediate_key
+      - setting: ssl_private_key
+        service: strongloop
+        resource_type: application
+        attribute: private_key
+      - setting: ssl_certificate
+        service: strongloop
+        resource_type: application
+        attribute: certificate
+    username:
+      label: System Username
+      type: string
+      description: The user name used to access the server 
+      required: true
+      default: strongloop
+      display-hints:
+        group: application
+        order: 2
+      constrains:
+      - setting: resources/strongloop_user/name
+      constraints:
+      - regex: '^[a-z_][a-z0-9_-]*?$'
+        message: Must be lowercase, start with a letter or '_' and not contain special characters other than '_' or '-'.
+    password:
+      label: System Password
+      type: password
+      description: Password to use for system user 
+      default: '=generate_password(min_length=12, required_chars=["0123456789", "abcdefghijklmnopqrstuvwxyz", "ABCDEFGHIJKLMNOPQRSTUVWXYZ"])'
+      help: |
+        Optional: Password provided must be between 8 and 32 characters in length.  If no password is provided, one will be generated for you.
+      display-hints:
+        group: application
+        order: 3
+      constraints:
+      - regex: '^(?=.*).{8,32}$'
+        message: must be between 8 and 32 characters long
+      # disabling until generate-password can handle it!
+      #- regex: '^(?=.*\d)'
+      #  message: must contain a digit
+      #- regex: '^(?=.*[a-z])'
+      #  message: must contain a lower case letter
+      #- regex: '^(?=.*[A-Z])'
+      #  message: must contain an upper case letter
+      constrains:
+      - setting: resources/strongloop_user/password
+    # Server Options
+    os:
+      label: Operating System
+      type: string
+      description: The operating system for the server.
+      default: Ubuntu 12.04
+      display-hints:
+        group: server
+        order: 2
+        list-type: compute.os
+        choice:
+        - name: "Ubuntu 12.04 LTS (Precise Pangolin)"
+          value: Ubuntu 12.04
+      constraints:
+      - in: ["Ubuntu 12.04"]
+        message: unsupported operating system
+      constrains:
+      - setting: os
+        resource_type: compute
+        service: strongloop
+    server_size:
+      label: Server Size
+      type: integer
+      default: 1024
+      description: The size of the server instance in MB of RAM.
+      display-hints:
+        group: server
+        order: 3
+        list-type: compute.memory
+        choice:
+        - name: 512 MB (20 GB disk)
+          value: 512
+        - name: 1 GB (40 GB disk)
+          value: 1024
+        - name: 2 GB (80 GB disk)
+          value: 2048
+        - name: 4 GB (160 GB disk)
+          value: 4096
+        - name: 8 GB (320 GB disk)
+          value: 8192
+        - name: 15 GB (620 GB disk)
+          value: 15000
+        - name: 30 GB (1.2 TB disk)
+          value: 30720
+      constrains:
+      - setting: memory
+        service: strongloop
+        resource_type: compute
+  resources:
+    "strongloop_user":
+      type: user
+      constrains:
+      - setting: username
+        service: strongloop
+        resource_type: application
+        attribute: name
+      - setting: password
+        service: strongloop
+        resource_type: application
+        attribute: password
+  meta-data:
+    schema-version: v0.7
+    blueprint-type: Application
+    application-name: StrongLoop Node.js
+    application-version: 3.6
+    flavor: Single Linux server with StrongLoop Node.js 
+    flavor-weight: 3
+    reach-info:
+      option-groups:
+      - application: StrongLoop Options
+      - server: Server Options
+      tattoo: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/strongloop-tattoo.png 
+      icon-20x20: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/strongloop-icon-20x20.png 
+      rackspace-supported: false
+  documentation:
+    abstract: |
+      StrongLoop Node.js (http://strongloop.com) installed with 
+      nginx (http://nginx.com/). 
+
+      This deployment is intended for simple testing and
+      development purposes.
+    guide: |
+      This blueprint includes a single server running StrongLoop with nginx.
+
+      This blueprint's performance has not been measured.
+    instructions: |
+      #### Accessing Your Deployment
+
+      If you provided a domain name that is associated with your Rackspace Cloud account and chose to create DNS records,
+      you should be able to navigate to the provided domain name in your browser. If DNS has not been configured yet,
+      please refer to this [documentation](http://www.rackspace.com/knowledge_center/article/how-do-i-modify-my-hosts-file)
+      on how to setup your Hosts file to allow your browser to access your Deployment via domain name. Please note: some
+      applications like Wordpress, Drupal, and Magneto may not work properly unless accessed via domain name.
+
+      #### Getting Started
+
+      The modern app platform with Node.js, NPM and tooling for use in production. Backed by professional support plans.
+      Once your deployment is complete, navigate to your deployment on port 3000 to start using StrongLoop Node.js.      
+
+  display-outputs:
+    "Site Address":
+      type: url
+      source: options://url
+      extra-sources:
+        ipv4: "services://strongloop/ip"
+      order: 1
+      group: application
+    "Private Key":
+      type: private-key
+      source: "resources://deployment-keys/instance/private_key"
+      order: 5
+      group: application
+      is-secret: true
+environment:
+  description: This environment uses next-gen cloud servers.
+  name: Next-Gen Open Cloud
+  providers:
+    chef-solo:
+      provides:
+      - application: http
+      vendor: opscode
+      constraints:
+      - source: %repo_url%
+    nova: {}
+    database: {}
+    common:
+      vendor: rackspace
+inputs:
+  blueprint:
+    url: http://strongloop.example.com/
+    region: ORD
+    username: strongloop
+    server_size: 1024
+    password: Ul345678
