@@ -3,6 +3,9 @@
 
 site :opscode
 
+cookbook 'apt',
+  :git => 'https://github.rackspace.com/Cookbooks/apt.git'
+
 cookbook 'firewall',
   :git => 'https://github.com/opscode-cookbooks/firewall.git'
 
