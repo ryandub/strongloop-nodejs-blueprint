@@ -50,11 +50,11 @@ maps:
 - value: |
     {{ parse_url(setting('url')).private_key | indent(4) }}
   targets:
-  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_private_key
+  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_key
 - value: |
     {{ parse_url(setting('url')).intermediate_key | indent(4) }}
   targets:
-  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/cacert
+  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_cacert
 # Application/Wordpress settings
 - value: {{parse_url(setting('url')).hostname}}
   targets:
