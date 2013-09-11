@@ -70,7 +70,7 @@ maps:
   - encrypted-databags://{{ deployment.id }}/secrets/strongloop/password
 - value: {{ setting('app-name') }}
   targets:
-  - attributes://strongloop/app-name
+  - attributes://strongloop/app_name
 - source:  requirements://host:linux/private_ip
   targets:
   - outputs://instance:{{resource.index}}/instance/ip
