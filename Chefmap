@@ -33,7 +33,7 @@ options:
     type: string
   "ssl_intermediate_key":
     type: string
-  "app-name""
+  "app_name""
     type: string
 run-list:
   recipes:
@@ -68,7 +68,7 @@ maps:
 - value: {{ setting('password') }}
   targets:
   - encrypted-databags://{{ deployment.id }}/secrets/strongloop/password
-- value: {{ setting('app-name') }}
+- value: {{ setting('app_name') }}
   targets:
   - attributes://strongloop/app_name
 - source:  requirements://host:linux/private_ip

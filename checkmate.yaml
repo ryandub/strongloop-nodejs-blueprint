@@ -111,7 +111,7 @@ blueprint:
       #  message: must contain an upper case letter
       constrains:
       - setting: resources/strongloop_user/password
-    app-name:
+    app_name:
       label: Application Name
       type: string
       default: my-app
@@ -123,7 +123,7 @@ blueprint:
       - regex: '^[a-zA-Z0-9][a-zA-Z0-9_-]*?$'
         message: Must start with a letter or number and not contain any special characters other than '_' or '-'.
       constrains:
-      - setting: app-name
+      - setting: app_name
         service: strongloop
         resource_type: application
     # Server Options
