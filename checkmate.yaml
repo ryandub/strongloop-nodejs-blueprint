@@ -213,11 +213,9 @@ blueprint:
       rackspace-supported: false
   documentation:
     abstract: |
-      StrongLoop Node.js (http://strongloop.com) installed with 
-      nginx (http://nginx.com/). 
+      [StrongLoop](http://strongloop.com) Node.js installed with [Nginx](http://nginx.com/). 
 
-      This deployment is intended for simple testing and
-      development purposes.
+      This deployment is intended for simple testing and development purposes.
     guide: |
       This blueprint includes a single server running StrongLoop with nginx.
 
