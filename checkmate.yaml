@@ -174,16 +174,6 @@ blueprint:
       - setting: memory
         service: strongloop
         resource_type: compute
-    register-dns:
-      label: Create DNS A record
-      type: boolean
-      default: false
-      display-hints:
-        group: dns
-      constrains:
-      - service: lb
-        resource_type: load-balancer
-        setting: create_dns
   resources:
     "strongloop_user":
       type: user
