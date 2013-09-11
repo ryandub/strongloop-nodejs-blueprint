@@ -111,6 +111,21 @@ blueprint:
       #  message: must contain an upper case letter
       constrains:
       - setting: resources/strongloop_user/password
+    app-name:
+      label: Application Name
+      type: string
+      default: my-app
+      display-hints:
+        group: application
+        order: 4
+        sample: my-app
+      constraints:
+      - regex: '^[a-zA-Z0-9][a-zA-Z0-9_-]*?$'
+        message: Must start with a letter or number and not contain any special characters other than '_' or '-'.
+      constrains:
+      - setting: app-name
+        service: strongloop
+        resource_type: application
     # Server Options
     os:
       label: Operating System
@@ -159,6 +174,16 @@ blueprint:
       - setting: memory
         service: strongloop
         resource_type: compute
+    register-dns:
+      label: Create DNS A record
+      type: boolean
+      default: false
+      display-hints:
+        group: dns
+      constrains:
+      - service: lb
+        resource_type: load-balancer
+        setting: create_dns
   resources:
     "strongloop_user":
       type: user
@@ -182,6 +207,7 @@ blueprint:
       option-groups:
       - application: StrongLoop Options
       - server: Server Options
+      - dns: DNS Options
       tattoo: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/strongloop-tattoo.png 
       icon-20x20: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/strongloop-icon-20x20.png 
       rackspace-supported: false
@@ -209,7 +235,6 @@ blueprint:
 
       The modern app platform with Node.js, NPM and tooling for use in production. Backed by professional support plans.
       Once your deployment is complete, navigate to your deployment on port 3000 to start using StrongLoop Node.js.      
-
   display-outputs:
     "Site Address":
       type: url
@@ -221,7 +246,7 @@ blueprint:
     "Private Key":
       type: private-key
       source: "resources://deployment-keys/instance/private_key"
-      order: 5
+      order: 2
       group: application
       is-secret: true
 environment:
@@ -245,3 +270,4 @@ inputs:
     username: strongloop
     server_size: 1024
     password: Ul345678
+    app-name: my-app

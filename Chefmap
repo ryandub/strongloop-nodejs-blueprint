@@ -33,11 +33,14 @@ options:
     type: string
   "ssl_intermediate_key":
     type: string
+  "app-name""
+    type: string
 run-list:
   recipes:
   - apt
   - strongloop 
   - strongloop::nginx
+  - strongloop::firewall
 maps:
 - value: {{deployment.id}} # Deployment ID needs to go to Node Attribute
   targets:
@@ -55,7 +58,7 @@ maps:
     {{ parse_url(setting('url')).intermediate_key | indent(4) }}
   targets:
   - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_cacert
-# Application/Wordpress settings
+# Application settings
 - value: {{parse_url(setting('url')).hostname}}
   targets:
   - attributes://strongloop/domain 
@@ -65,6 +68,9 @@ maps:
 - value: {{ setting('password') }}
   targets:
   - encrypted-databags://{{ deployment.id }}/secrets/strongloop/password
+- value: {{ setting('app-name') }}
+  targets:
+  - attributes://strongloop/app-name
 - source:  requirements://host:linux/private_ip
   targets:
   - outputs://instance:{{resource.index}}/instance/ip
