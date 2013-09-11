@@ -71,7 +71,7 @@ maps:
 - value: {{ setting('app_name') }}
   targets:
   - attributes://strongloop/app_name
-- source:  requirements://host:linux/private_ip
+- source: requirements://host:linux/private_ip
   targets:
   - outputs://instance:{{resource.index}}/instance/ip
   - outputs://instance:{{resource.index}}/instance/private_ip
