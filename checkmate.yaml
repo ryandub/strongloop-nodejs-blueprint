@@ -11,13 +11,19 @@ blueprint:
       - count: 1
       display-name: StrongLoop Node.js
       display-outputs:
+        "Server Private Key":
+          type: private-key
+          source: "resources://deployment-keys/instance/private_key"
+          group: application
+          is-secret: true
+          order: 1
         "System User":
-          source: interfaces/strongloop/system_user
+          source: "resources://strongloop_user/instance/name" 
           group: application
           order: 2
           type: string
         "System Password":
-          source: interfaces/strongloop/strongloop_pass
+          source: "resources://strongloop_user/instance/password" 
           type: password
           group: application
           order: 3
