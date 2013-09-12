@@ -10,24 +10,6 @@ blueprint:
       constraints:
       - count: 1
       display-name: StrongLoop Node.js
-      display-outputs:
-        "Server Private Key":
-          type: private-key
-          source: "resources://deployment-keys/instance/private_key"
-          group: application
-          is-secret: true
-          order: 1
-        "System User":
-          source: "resources://strongloop_user/instance/name" 
-          group: application
-          order: 2
-          type: string
-        "System Password":
-          source: "resources://strongloop_user/instance/password" 
-          type: password
-          group: application
-          order: 3
-          is-secret: true
   options:
     # Deployment Options
     region:
@@ -237,11 +219,22 @@ blueprint:
         ipv4: "services://strongloop/ip"
       order: 1
       group: application
-    "Private Key":
+    "Server Private SSH Key":
       type: private-key
       source: "resources://deployment-keys/instance/private_key"
       order: 2
       group: application
+      is-secret: true
+    "System User":
+      source: "resources://strongloop_user/instance/name"
+      group: application
+      order: 2
+      type: string
+    "System Password":
+      source: "resources://strongloop_user/instance/password"
+      type: password
+      group: application
+      order: 3
       is-secret: true
 environment:
   description: This environment uses next-gen cloud servers.
