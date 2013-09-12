@@ -1,6 +1,6 @@
 blueprint:
   id: 1cd3b25ea36547b79969b8d20a870349 
-  name: StrongLoop Node.js 
+  name: StrongLoop Node 
   version: 1.0.0
   services:
     strongloop:
@@ -189,10 +189,10 @@ blueprint:
   meta-data:
     schema-version: v0.7
     blueprint-type: Application
-    application-name: StrongLoop Node.js
-    application-version: 3.6
+    application-name: StrongLoop
+    application-version: 1.1.4
     flavor: Single Linux server with StrongLoop Node.js 
-    flavor-weight: 3
+    flavor-weight: 1
     reach-info:
       option-groups:
       - application: StrongLoop Options
