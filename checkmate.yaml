@@ -178,7 +178,7 @@ blueprint:
     schema-version: v0.7
     blueprint-type: Application
     application-name: StrongLoop
-    application-version: 1.1.4
+    application-version: 1.0
     flavor: Single Linux server with StrongLoop Node.js 
     flavor-weight: 1
     reach-info:
