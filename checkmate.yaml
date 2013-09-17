@@ -208,6 +208,64 @@ blueprint:
       applications like Wordpress, Drupal, and Magneto may not work properly unless accessed via domain name.
 
       #### Getting Started
+      
+      StrongLoop Suite
+      [StrongLoop.com](http://strongloop.com)
+      
+      An API tier for connecting enterprise data to devices and browsers. Created by the people who write Node.js.
+      
+      StrongLoop Suite comes with a private mBaaS, an operations and performance monitoring console, a certified distribution of Node.js and tooling, and of course, technical support from the Node experts.
+      
+      ##### [LoopBack](http://alpha.strongloop.com/strongloop-suite/loopback/)
+      Private mBaaS
+      An Enterprise-ready, open source mobile API framework, built and supported by StrongLoop and the Node.js community, that auto-generates mobile SDKs.
+      
+      ##### [StrongOps](http://alpha.strongloop.com/strongloop-suite/strongops/)
+      Operations Console
+      Get detailed real-time performance monitoring and operational support for Node.js applications with CPU Profiling, Event Loop inspection, and more.
+      
+      ##### [StrongNode](http://alpha.strongloop.com/strongloop-suite/strongnode/)
+      Certified Package Node.js
+      Get your development off to the right start by standardizing on a certified and tested package of Node.js, including a complementary toolset backed by StrongLoop.
+      
+      ##### LoopBack Command Line Iterface Getting Started with the sls-sample-app
+      ```sh
+      $slc lb example
+      $slc cd sls-sample-app
+      $slc install
+      $slc run .
+      ```
+      
+      ##### LoopBack Command Line Iterface Getting Started from scratch
+      ```sh
+      $mkdir myLoopBackProject
+      $cd myLoopBackProject
+      $slc project myLoopBackApp
+      $slc install
+      $slc lb model products
+      $slc lb model customers
+      $slc lb model stores
+      $slc lb model cars
+      $cd myLoopBackApp
+      $slc run .
+      ```
+      
+      ##### Some helpful links
+      
+      StrongLoop Docs
+      http://docs.strongloop.com
+      
+      LoopBack iOS Examples: TableView, MapView, Login, Leaderboard, RemoteMethod Invocation
+      http://github.com/strongloop-community/loopback-examples-ios
+      
+      LoopBack Xamarin Mono Examples:
+      http://github.com/strongloop-community/loopback-examples-xamarin
+      
+      LoopBack Appcelerator Titanium Examples:
+      http://github.com/strongloop-community/loopback-examples-titanium
+      
+      StrongLoop Ops Dashboard
+      http://strongloop.com/ops/dashboard
 
       The modern app platform with Node.js, NPM and tooling for use in production. Backed by professional support plans.
       Once your deployment is complete, navigate to your deployment on port 3000 to start using StrongLoop Node.js.      
