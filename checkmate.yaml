@@ -164,8 +164,8 @@ blueprint:
   meta-data:
     schema-version: v0.7
     blueprint-type: Application
-    application-name: StrongLoop
-    application-version: 1.0
+    application-name: StrongLoop Suite
+    application-version: "1.0"
     flavor: Single Linux server with StrongLoop Suite 
     flavor-weight: 1
     reach-info:
