@@ -1,6 +1,6 @@
 blueprint:
   id: 1cd3b25ea36547b79969b8d20a870349 
-  name: StrongLoop Node 
+  name: StrongLoop Suite 
   version: 1.0.0
   services:
     strongloop:
@@ -9,7 +9,7 @@ blueprint:
         type: application
       constraints:
       - count: 1
-      display-name: StrongLoop Node.js
+      display-name: StrongLoop Suite
   options:
     # Deployment Options
     region:
@@ -191,25 +191,23 @@ blueprint:
       rackspace-supported: false
   documentation:
     abstract: |
-      [StrongLoop](http://strongloop.com) Node.js installed with [Nginx](http://nginx.com/). 
-
-      This deployment is intended for simple testing and development purposes.
+      [StrongLoop](http://strongloop.com) Suite is a modern app platform with Node.js, NPM and tooling for use in production.
+      Backed by professional support plans from StrongLoop.
     guide: |
-      This blueprint includes a single server running StrongLoop with Nginx.
+      This blueprint includes a single server running StrongLoop Suite.
 
       This blueprint's performance has not been measured.
     instructions: |
-      #### Accessing Your Deployment
-
-      If you provided a domain name that is associated with your Rackspace Cloud account and chose to create DNS records,
-      you should be able to navigate to the provided domain name in your browser. If DNS has not been configured yet,
-      please refer to this [documentation](http://www.rackspace.com/knowledge_center/article/how-do-i-modify-my-hosts-file)
-      on how to setup your Hosts file to allow your browser to access your Deployment via domain name. Please note: some
-      applications like Wordpress, Drupal, and Magneto may not work properly unless accessed via domain name.
-
       #### Getting Started
+
+      This deployment provides a single Linux server running StrongLoop Suite. Once the deployment is complete, you can find a demo LoopBack application
+      in the home directory for the user provided (default is "strongloop"). You can access this demo application by navigating to the IP address of the
+      server on port 3000 (for example, https://1.2.3.4:3000).
+
+      To make your own application, SSH to the server using the user and password provided and follow the guides below. See
+      [docs.strongloop.com](http://docs.strongloop.com/) for more information about StrongLoop Suite.
       
-      StrongLoop Suite
+      #### StrongLoop Suite
       [StrongLoop.com](http://strongloop.com)
       
       An API tier for connecting enterprise data to devices and browsers. Created by the people who write Node.js.
@@ -252,23 +250,16 @@ blueprint:
       
       ##### Some helpful links
       
-      StrongLoop Docs
-      http://docs.strongloop.com
+      [StrongLoop Docs](http://docs.strongloop.com)
       
-      LoopBack iOS Examples: TableView, MapView, Login, Leaderboard, RemoteMethod Invocation
-      http://github.com/strongloop-community/loopback-examples-ios
+      [LoopBack iOS Examples: TableView, MapView, Login, Leaderboard, RemoteMethod Invocation](http://github.com/strongloop-community/loopback-examples-ios)
       
-      LoopBack Xamarin Mono Examples:
-      http://github.com/strongloop-community/loopback-examples-xamarin
+      [LoopBack Xamarin Mono Examples](http://github.com/strongloop-community/loopback-examples-xamarin)
       
-      LoopBack Appcelerator Titanium Examples:
-      http://github.com/strongloop-community/loopback-examples-titanium
+      [LoopBack Appcelerator Titanium Examples](http://github.com/strongloop-community/loopback-examples-titanium)
       
-      StrongLoop Ops Dashboard
-      http://strongloop.com/ops/dashboard
+      [StrongLoop Ops Dashboard](http://strongloop.com/ops/dashboard)
 
-      The modern app platform with Node.js, NPM and tooling for use in production. Backed by professional support plans.
-      Once your deployment is complete, navigate to your deployment on port 3000 to start using StrongLoop Node.js.      
   display-outputs:
     "Site Address":
       type: url
@@ -284,7 +275,7 @@ blueprint:
       group: application
       is-secret: true
     "System User":
-      source: "resources://strongloop_user/instance/name"
+      source: "resources://strongloop_user/instance/username"
       group: application
       order: 2
       type: string
