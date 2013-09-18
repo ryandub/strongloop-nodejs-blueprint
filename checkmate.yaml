@@ -166,7 +166,7 @@ blueprint:
     blueprint-type: Application
     application-name: StrongLoop
     application-version: 1.0
-    flavor: Single Linux server with StrongLoop Node.js 
+    flavor: Single Linux server with StrongLoop Suite 
     flavor-weight: 1
     reach-info:
       option-groups:
@@ -201,8 +201,7 @@ blueprint:
       
       StrongLoop Suite comes with a private mBaaS, an operations and performance monitoring console, a certified distribution of Node.js and tooling, and of course, technical support from the Node experts.
       
-      ##### [LoopBack](http://alpha.strongloop.com/strongloop-suite/loopback/)
-      Private mBaaS
+      ##### [LoopBack](http://alpha.strongloop.com/strongloop-suite/loopback/) Private mBaaS
       An Enterprise-ready, open source mobile API framework, built and supported by StrongLoop and the Node.js community, that auto-generates mobile SDKs.
       
       ##### [StrongOps](http://alpha.strongloop.com/strongloop-suite/strongops/)
