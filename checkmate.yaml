@@ -172,7 +172,6 @@ blueprint:
       option-groups:
       - application: StrongLoop Options
       - server: Server Options
-      - dns: DNS Options
       tattoo: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/strongloop-tattoo.png 
       icon-20x20: https://600861890ddb34a8670a-744765205721eed93c384dae790e86aa.ssl.cf2.rackcdn.com/strongloop-icon-20x20.png 
       rackspace-supported: false
