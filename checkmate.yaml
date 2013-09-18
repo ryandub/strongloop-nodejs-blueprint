@@ -189,7 +189,7 @@ blueprint:
 
       This deployment provides a single Linux server running StrongLoop Suite. Once the deployment is complete, you can find a demo LoopBack application
       in the home directory for the user provided (default is "strongloop"). You can access this demo application by navigating to the IP address of the
-      server on port 3000 (for example, https://1.2.3.4:3000).
+      server on port 3000 (for example, https://1.2.3.4:3000). For more information on how to use LoopBack, see this [quick start guide](http://docs.strongloop.com/loopback/).
 
       To make your own application, SSH to the server using the user and password provided and follow the guides below. See
       [docs.strongloop.com](http://docs.strongloop.com/) for more information about StrongLoop Suite.
