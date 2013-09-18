@@ -40,29 +40,16 @@ blueprint:
         group: application
         order: 1
         default-protocol: http
-        encrypted-protocols: [https]
         sample: http://example.com/
       constraints:
-      - protocols: [http, https]
-        message: protocols are limited to http or https
+      - protocols: [http]
+        message: protocols are limited to http only
       - regex: '^([a-zA-Z]{2,}?\:\/\/[a-zA-Z0-9\-]+(?:\.[a-zA-Z0-9\-]+)*\.[a-zA-Z]{2,6}(?:\/?|(?:\/[\w\-]+)*)(?:\/?|\/\w+\.[a-zA-Z]{2,4}(?:\?[\w]+\=[\w\-]+)?)?(?:\&[\w]+\=[\w\-]+)*)$'
         message: must be a valid web address
       constrains:
       - setting: domain
         service: strongloop
         attribute: hostname
-      - resource_type: application
-        service: strongloop
-        setting: ssl_intermediate_key
-        attribute: intermediate_key
-      - setting: ssl_private_key
-        service: strongloop
-        resource_type: application
-        attribute: private_key
-      - setting: ssl_certificate
-        service: strongloop
-        resource_type: application
-        attribute: certificate
     username:
       label: System Username
       type: string

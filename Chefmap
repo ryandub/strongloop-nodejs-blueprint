@@ -27,37 +27,18 @@ options:
     required: true
   "url":
     type: url
-  "ssl_private_key":
-    type: string
-  "ssl_certificate":
-    type: string
-  "ssl_intermediate_key":
-    type: string
   "app_name":
     type: string
 run-list:
   recipes:
   - apt
   - strongloop 
-  - strongloop::nginx
   - strongloop::firewall
 maps:
 - value: {{deployment.id}} # Deployment ID needs to go to Node Attribute
   targets:
   - attributes://deployment/id
   - attributes://strongloop/databag_name
-- value: |
-    {{ parse_url(setting('url')).certificate | indent(4) }}
-  targets:
-  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_cert
-- value: |
-    {{ parse_url(setting('url')).private_key | indent(4) }}
-  targets:
-  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_key
-- value: |
-    {{ parse_url(setting('url')).intermediate_key | indent(4) }}
-  targets:
-  - encrypted-databags://{{ deployment.id }}/secrets/strongloop/ssl_cacert
 # Application settings
 - value: {{parse_url(setting('url')).hostname}}
   targets:
