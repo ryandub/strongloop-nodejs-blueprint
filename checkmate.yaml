@@ -62,8 +62,8 @@ blueprint:
       constrains:
       - setting: resources/strongloop_user/name
       constraints:
-      - regex: '^[a-z_][a-z0-9_-]*?$'
-        message: Must be lowercase, start with a letter or '_' and not contain special characters other than '_' or '-'.
+      - regex: '^(?!^root$)([a-z_][a-z0-9_]{0,30})$'
+        message: must be lower case, alpha numeric, fewer than 32 characters, and not 'root'
     password:
       label: System Password
       type: password
