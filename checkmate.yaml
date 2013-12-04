@@ -126,29 +126,35 @@ blueprint:
       type: integer
       default: 1024
       description: The size of the server instance in MB of RAM.
+      help: |
+        Required: Select the desired Performance Cloud Server flavor.  The two
+        disk values represent the system and data disk sizes respectively.
       display-hints:
         group: server
         order: 3
         list-type: compute.memory
         choice:
-        - name: 512 MB (20 GB disk)
-          value: 512
-        - name: 1 GB (40 GB disk)
+        - name: 1 GB (20 GB / - disk)
           value: 1024
-        - name: 2 GB (80 GB disk)
+        - name: 2 GB (40 GB / 20 GB disk)
           value: 2048
-        - name: 4 GB (160 GB disk)
+        - name: 4 GB (40 GB / 40 GB disk)
           value: 4096
-        - name: 8 GB (320 GB disk)
+        - name: 8 GB (40 GB / 80 GB disk)
           value: 8192
-        - name: 15 GB (620 GB disk)
+        - name: 15 GB (40 GB / 150 GB disk)
           value: 15000
-        - name: 30 GB (1.2 TB disk)
+        - name: 30 GB (40 GB / 300 GB disk)
           value: 30720
       constrains:
       - setting: memory
         service: strongloop
         resource_type: compute
+      constraints:
+      - greater-than-or-equal-to: 1024
+        message: must be 1024 or larger
+      - less-than-or-equal-to: 30720
+        message: must be 30720 or smaller
   resources:
     "strongloop_user":
       type: user
