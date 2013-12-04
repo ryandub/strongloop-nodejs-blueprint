@@ -1,0 +1,45 @@
+{
+  "sha": "e010b653beb6456642541160ea2dc66fdcaddf02",
+  "sources": {
+    "apt": {
+      "locked_version": "1.4.9",
+      "git": "https://github.rackspace.com/Cookbooks/apt.git",
+      "ref": "0a51ba6452bae645abd80d79e6f70d542c69dee1"
+    },
+    "firewall": {
+      "locked_version": "0.11.3",
+      "git": "https://github.com/opscode-cookbooks/firewall.git",
+      "ref": "c9473bcb3d666dc053979852042cef75236978fe"
+    },
+    "nginx": {
+      "locked_version": "1.7.0"
+    },
+    "strongloop": {
+      "locked_version": "0.0.2",
+      "git": "https://github.com/ryandub/strongloop-node.git",
+      "ref": "d79ca58facaf48516f12b659c5b057d7983fb4b9"
+    },
+    "build-essential": {
+      "locked_version": "1.4.0"
+    },
+    "yum": {
+      "locked_version": "2.3.0"
+    },
+    "runit": {
+      "locked_version": "1.1.6"
+    },
+    "ohai": {
+      "locked_version": "1.1.10",
+      "constraint": ">= 1.1.4"
+    },
+    "openssl": {
+      "locked_version": "1.1.0"
+    },
+    "supervisor": {
+      "locked_version": "0.4.10"
+    },
+    "python": {
+      "locked_version": "1.4.0"
+    }
+  }
+}
