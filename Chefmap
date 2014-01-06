@@ -27,8 +27,6 @@ options:
     required: true
   "url":
     type: url
-  "app_name":
-    type: string
 run-list:
   recipes:
   - apt
@@ -49,9 +47,6 @@ maps:
 - value: {{ setting('password') }}
   targets:
   - encrypted-databags://{{ deployment.id }}/secrets/strongloop/password
-- value: {{ setting('app_name') }}
-  targets:
-  - attributes://strongloop/app_name
 - source: requirements://host:linux/private_ip
   targets:
   - outputs://instance:{{resource.index}}/instance/ip
