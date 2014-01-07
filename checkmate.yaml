@@ -212,23 +212,23 @@ blueprint:
 
 
       ```
-      $slc lb example
-      $slc cd sls-sample-app
-      $slc run .
+      slc lb example
+      slc cd sls-sample-app
+      slc run .
       ```
 
-      ######Getting started with LoopBack from scratch
+      #####Getting started with LoopBack from scratch
       For more information see [Creating a LoopBack Application](http://docs.strongloop.com/display/DOC/Creating+a+LoopBack+application)
 
 
       ```
-      $mkdir myLoopBackProject
-      $cd myLoopBackProject
-      $slc project myLoopBackApp
-      $slc lb model products
-      $slc lb model customers
-      $slc lb model stores
-      $slc lb model cars
+      mkdir myLoopBackProject
+      cd myLoopBackProject
+      slc project myLoopBackApp
+      slc lb model products
+      slc lb model customers
+      slc lb model stores
+      slc lb model cars
       ```
   display-outputs:
     "Site Address":
