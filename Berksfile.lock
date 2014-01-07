@@ -17,7 +17,7 @@
     "strongloop": {
       "locked_version": "0.1.0",
       "git": "https://github.com/ryandub/strongloop-node.git",
-      "ref": "199146189e51d2620ebd3797e57b86790e35eea1"
+      "ref": "e4ebb968a20ffaeb89200b46625a9ec48dfbd0fa"
     },
     "build-essential": {
       "locked_version": "1.4.0"
