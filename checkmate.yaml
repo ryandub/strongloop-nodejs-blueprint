@@ -247,13 +247,13 @@ blueprint:
     "System User":
       source: "resources://strongloop_user/instance/username"
       group: application
-      order: 2
+      order: 3
       type: string
     "System Password":
       source: "resources://strongloop_user/instance/password"
       type: password
       group: application
-      order: 3
+      order: 4
       is-secret: true
 environment:
   description: This environment uses next-gen cloud servers.
